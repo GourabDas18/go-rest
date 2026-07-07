@@ -11,6 +11,7 @@ import (
 	"time"
 
 	config "github.com/GourabDas18/g-rest/internal"
+	"github.com/GourabDas18/g-rest/internal/service"
 )
 
 func main() {
@@ -30,6 +31,7 @@ func main() {
 
 	go func() {
 		fmt.Printf("%s Server is running=====> %s\n", time.Now().Format("dd/MM/yyyy HH:mm a"), config.HTTPServer.Addr)
+		service.DBInit()
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("Failed to start server %s", err.Error())
 		}
