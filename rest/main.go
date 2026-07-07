@@ -32,6 +32,7 @@ func main() {
 	go func() {
 		fmt.Printf("%s Server is running=====> %s\n", time.Now().Format("dd/MM/yyyy HH:mm a"), config.HTTPServer.Addr)
 		service.DBInit()
+		service.MigrateModels(service.Db)
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("Failed to start server %s", err.Error())
 		}
