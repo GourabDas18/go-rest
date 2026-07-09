@@ -11,6 +11,8 @@ import (
 	"time"
 
 	config "github.com/GourabDas18/g-rest/internal"
+
+	"github.com/GourabDas18/g-rest/internal/controller"
 	"github.com/GourabDas18/g-rest/internal/service"
 )
 
@@ -20,9 +22,7 @@ func main() {
 
 	router := http.NewServeMux()
 
-	router.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello World"))
-	})
+	router.HandleFunc("GET /", controller.Test)
 
 	server := http.Server{
 		Addr:    config.HTTPServer.Addr,
