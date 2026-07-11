@@ -23,6 +23,7 @@ func main() {
 	router := http.NewServeMux()
 
 	router.HandleFunc("GET /", controller.Test)
+	router.HandleFunc("POST /", controller.CreateUser)
 
 	server := http.Server{
 		Addr:    config.HTTPServer.Addr,
