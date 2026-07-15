@@ -5,18 +5,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/ilyakaznacheev/cleanenv"
-
-	"github.com/go-playground/locales/en"
-	ut "github.com/go-playground/universal-translator"
+	"github.com/GourabDas18/g-rest/utility"
 	"github.com/go-playground/validator/v10"
-	enTranslations "github.com/go-playground/validator/v10/translations/en"
+	"github.com/ilyakaznacheev/cleanenv"
 )
-
-var en = en.New()
-var uni = ut.New(en, en)
-
-var Trans, _ = uni.GetTranslator("en")
 
 type HTTPServer struct {
 	Addr string `yaml:"address"`
@@ -28,9 +20,14 @@ type Config struct {
 	HTTPServer  HTTPServer `yaml:"http_server"`
 }
 
-func MustLoad() *Config {
 
-	enTranslations.RegisterDefaultTranslations(validate, Trans)
+
+func MustLoad(validatorG *validator.Validate) *Config {
+
+	var trans ut.Translator
+
+	validatorG,trans: utility.ValidatorG()
+
 	var configPath string
 
 	configPath = os.Getenv("CONFIG_PATH")

@@ -11,14 +11,17 @@ import (
 	"time"
 
 	config "github.com/GourabDas18/g-rest/internal"
+	"github.com/go-playground/validator/v10"
 
 	"github.com/GourabDas18/g-rest/internal/controller"
 	"github.com/GourabDas18/g-rest/internal/service"
 )
 
+var ValidatorG validator.Validate
+
 func main() {
 
-	config := config.MustLoad()
+	config := config.MustLoad(&ValidatorG)
 
 	router := http.NewServeMux()
 
