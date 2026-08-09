@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/GourabDas18/g-rest/utility"
 	"github.com/go-playground/validator/v10"
 	"github.com/ilyakaznacheev/cleanenv"
 )
@@ -15,18 +14,11 @@ type HTTPServer struct {
 }
 
 type Config struct {
-	Env         string     `yaml:"env" env:"ENV" env-required:"true" env-default:"Production"`
-	StoragePath string     `yaml:"storage_path"`
-	HTTPServer  HTTPServer `yaml:"http_server"`
+	Env        string     `yaml:"env" env:"ENV" env-required:"true" env-default:"Production"`
+	HTTPServer HTTPServer `yaml:"http_server"`
 }
 
-
-
 func MustLoad(validatorG *validator.Validate) *Config {
-
-	var trans ut.Translator
-
-	validatorG,trans: utility.ValidatorG()
 
 	var configPath string
 

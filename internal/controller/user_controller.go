@@ -3,12 +3,11 @@ package controller
 import (
 	"encoding/json"
 	"net/http"
-	"strings"
 
-	config "github.com/GourabDas18/g-rest/internal"
 	"github.com/GourabDas18/g-rest/internal/model"
 	"github.com/GourabDas18/g-rest/internal/service"
-	"github.com/go-playground/validator/v10"
+
+	"github.com/GourabDas18/g-rest/utility"
 )
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
@@ -21,21 +20,10 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid JSON payload : "+err.Error(), http.StatusBadRequest)
 		return
 	}
+	pass, errMessage := utility.ValidatorG(userReq)
 
-	validate := validator.New(validator.WithRequiredStructEnabled())
-	err = validate.Struct(userReq)
-
-	if err != nil {
-
-		validationError, ok := err.(validator.ValidationErrors)
-
-		if ok {
-			for _, e := range validationError {
-				e.Translate(config.Trans)
-			}
-		}
-
-		http.Error(w, strings.Join(strings.Split(err.Error(), "\n"), ","), http.StatusBadRequest)
+	if !pass {
+		http.Error(w, errMessage, http.StatusBadRequest)
 		return
 	}
 
