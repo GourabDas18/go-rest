@@ -23,7 +23,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	pass, errMessage := utility.ValidatorG(userReq)
 
 	if !pass {
-		http.Error(w, errMessage, http.StatusBadRequest)
+		utility.Response(w, http.StatusBadRequest, errMessage, nil, utility.Error)
 		return
 	}
 
