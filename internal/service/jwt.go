@@ -32,6 +32,6 @@ func GetToken(userId int, userName string, countryId int) (string, error) {
 	return tokenString, nil
 }
 
-func ValidateToken(token string) (*CustomClaim, error) {
-	token, err := jwt.ParseWithClaims()
-}
+// func ValidateToken(token string) (*CustomClaim, error) {
+// 	// token, err := jwt.ParseWithClaims()
+// }

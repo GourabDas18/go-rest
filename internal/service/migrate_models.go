@@ -13,6 +13,7 @@ func MigrateModels(db *gorm.DB) {
 		&model.Category{},
 		&model.Transaction{},
 		&model.User{},
+		&model.Country{},
 	)
 
 	if err != nil {

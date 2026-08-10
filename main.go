@@ -27,6 +27,7 @@ func main() {
 
 	router.HandleFunc("GET /", controller.Test)
 	router.HandleFunc("POST /", controller.CreateUser)
+	router.HandleFunc("POST /bulkcountrysave", controller.CreateBulkCountry)
 
 	server := http.Server{
 		Addr:    config.HTTPServer.Addr,
