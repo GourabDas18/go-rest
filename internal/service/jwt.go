@@ -33,5 +33,7 @@ func GetToken(userId int, userName string, countryId int) (string, error) {
 }
 
 // func ValidateToken(token string) (*CustomClaim, error) {
-// 	// token, err := jwt.ParseWithClaims()
+// 	token, err := jwt.ParseWithClaims(token,&CustomClaim{},func(t *jwt.Token)(interface{},error){
+
+// 	})
 // }

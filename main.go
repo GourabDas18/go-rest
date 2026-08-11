@@ -18,24 +18,28 @@ import (
 )
 
 var ValidatorG validator.Validate
+var config0 *config.Config
 
 func main() {
 
-	config := config.MustLoad(&ValidatorG)
+	config0 = config.MustLoad(&ValidatorG)
 
 	router := http.NewServeMux()
 
 	router.HandleFunc("GET /", controller.Test)
 	router.HandleFunc("POST /", controller.CreateUser)
-	router.HandleFunc("POST /bulkcountrysave", controller.CreateBulkCountry)
+
+	router.HandleFunc("POST /countries/bulk", controller.CreateBulkCountry)
+	router.HandleFunc("POST /country", controller.CountrySave)
+	router.HandleFunc("GET /countries", controller.GetCountryList)
 
 	server := http.Server{
-		Addr:    config.HTTPServer.Addr,
+		Addr:    config0.HTTPServer.Addr,
 		Handler: router,
 	}
 
 	go func() {
-		fmt.Printf("%s Server is running=====> %s\n", time.Now().Format("dd/MM/yyyy HH:mm a"), config.HTTPServer.Addr)
+		fmt.Printf("%s Server is running=====> %s\n", time.Now().Format("dd/MM/yyyy HH:mm a"), config0.HTTPServer.Addr)
 		service.DBInit()
 		service.MigrateModels(service.Db)
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
