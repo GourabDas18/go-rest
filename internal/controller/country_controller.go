@@ -10,26 +10,28 @@ import (
 )
 
 func CountrySave(w http.ResponseWriter, r *http.Request) {
-	var countryReq *model.CountryCreateReq
+	var countryReq model.CountryCreateReq
 	err := json.NewDecoder(r.Body).Decode(&countryReq)
 	if err != nil {
-		utility.Response(w, http.StatusBadRequest, err.Error(), nil, utility.Error)
+		utility.Response(w, http.StatusBadRequest, "Invalid data given", nil, utility.Error)
 		return
 	}
 	var country model.Country
 	if countryReq.Id != nil {
-		err = service.Db.First(&country).Where("id = ?", *countryReq.Id).Error
+		err = service.Db.First(&country, *countryReq.Id).Error
 		if err != nil {
 			utility.Response(w, http.StatusNotFound, "No country found!", nil, utility.Error)
 			return
 		}
-		err = service.Db.Model(&model.Country{}).Where("id = ?", *countryReq.Id).Updates(&country).Error
+		country = model.CountryParseFromReq(&countryReq)
+		err = service.Db.Model(&model.Country{}).Where("id = ?", *countryReq.Id).Select("*").Omit("id", "created_at").Updates(&country).Error
 		if err != nil {
 			utility.Response(w, http.StatusInternalServerError, err.Error(), nil, utility.Error)
 			return
 		}
+		country.ID = *countryReq.Id
 	} else {
-		country = model.CountryParseFromReq(countryReq)
+		country = model.CountryParseFromReq(&countryReq)
 		respErr := service.Db.Create(&country).Error
 
 		if respErr != nil {
@@ -37,7 +39,7 @@ func CountrySave(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	countryResp := model.CountryParseFromRes(country)
+	countryResp := model.CountryParseFromRes(&country)
 	utility.Response(w, http.StatusCreated, "Successfull", &countryResp, utility.Success)
 }
 
@@ -49,7 +51,7 @@ func CreateBulkCountry(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	countryModels := model.BulkCountryParseFromReq(countryList)
+	countryModels := model.BulkCountryParseFromReq(&countryList)
 
 	result := service.Db.Create(&countryModels)
 
@@ -61,36 +63,10 @@ func CreateBulkCountry(w http.ResponseWriter, r *http.Request) {
 	utility.Response(w, http.StatusCreated, "Created Successfuly", &countryListResult, utility.Success)
 }
 
-func UpdateCountry(w http.ResponseWriter, r *http.Request) {
-	var countryReq model.CountryCreateReq
-
-	err := json.NewDecoder(r.Body).Decode(&countryReq)
-	if err != nil {
-		utility.Response(w, http.StatusBadRequest, err.Error(), nil, utility.Error)
-		return
-	}
-
-	if countryReq.Id == nil || (countryReq.Id != nil && *countryReq.Id < 1) {
-		print(countryReq.Id)
-		utility.Response(w, http.StatusBadRequest, "Give a valid Id", nil, utility.Error)
-		return
-	}
-
-	country := model.CountryParseFromReq(&countryReq)
-
-	err = service.Db.UpdateColumns(&country).Error
-	if err != nil {
-		utility.Response(w, http.StatusInternalServerError, err.Error(), nil, utility.Error)
-		return
-	}
-	countryData := model.CountryParseFromRes(country)
-	utility.Response(w, http.StatusAccepted, "Updated Successfuly", &countryData, utility.Success)
-}
-
 func GetCountryList(w http.ResponseWriter, r *http.Request) {
 	var countryList []model.Country
 
-	respError := service.Db.Find(&countryList).Where("isActive = ?", true).Error
+	respError := service.Db.Where("is_active = ?", true).Find(&countryList).Error
 	if respError != nil {
 		utility.Response(w, http.StatusInternalServerError, respError.Error(), nil, utility.Error)
 		return

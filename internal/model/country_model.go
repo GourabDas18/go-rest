@@ -18,7 +18,7 @@ type CountryCreateReq struct {
 	Id       *uint  `json:"id"`
 	Name     string `json:"name" validate:"required"`
 	Currency string `json:"currency" validate:"required"`
-	IsActive *bool  `json:"isActive"`
+	IsActive *bool  `json:"isActive" gorm:"type:boolean;column:is_active"`
 }
 type CountryCreateRes struct {
 	Id       uint   `json:"id" validate:"required"`
@@ -35,13 +35,17 @@ func CountryParseFromReq(countryReq *CountryCreateReq) Country {
 	}
 }
 
-func BulkCountryParseFromReq(countryList []CountryCreateReq) []Country {
-	countryListData := make([]Country, len(countryList))
-	for i, c := range countryList {
+func BulkCountryParseFromReq(countryList *[]CountryCreateReq) []Country {
+	countryListData := make([]Country, len(*countryList))
+	for i, c := range *countryList {
+		active := true
+		if c.IsActive != nil {
+			active = *c.IsActive
+		}
 		countryListData[i] = Country{
 			Name:     strings.TrimSpace(c.Name),
 			Currency: strings.TrimSpace(c.Currency),
-			IsActive: *c.IsActive,
+			IsActive: active,
 		}
 		// if c.IsActive == nil {
 		// 	trueValue := true
@@ -53,8 +57,9 @@ func BulkCountryParseFromReq(countryList []CountryCreateReq) []Country {
 	return countryListData
 }
 
-func CountryParseFromRes(c Country) CountryCreateRes {
+func CountryParseFromRes(c *Country) CountryCreateRes {
 	return CountryCreateRes{
+		Id:       c.ID,
 		Name:     strings.TrimSpace(c.Name),
 		Currency: strings.TrimSpace(c.Currency),
 		IsActive: c.IsActive,
@@ -65,6 +70,7 @@ func BulkCountryParseFromRes(countryList []Country) []CountryCreateRes {
 	countryListData := make([]CountryCreateRes, len(countryList))
 	for i, c := range countryList {
 		countryListData[i] = CountryCreateRes{
+			Id:       c.ID,
 			Name:     strings.TrimSpace(c.Name),
 			Currency: strings.TrimSpace(c.Currency),
 			IsActive: c.IsActive,
