@@ -24,11 +24,17 @@ type UserCreateReq struct {
 	CountryId uint   `json:"countryId" validate:"required"`
 }
 
+type UserAuthReq struct {
+	Email    string `json:"email" validate:"required,min=3,email" `
+	Password string `json:"password" validate:"required,min=6"`
+}
+
 type UserResponse struct {
-	ID        uint   `json:"id" validate:"required"`
-	Name      string `json:"name" validate:"required"`
-	CountryId uint   `json:"country_id" validate:"required"`
-	SearchKey string `json:"search_key"`
+	ID        uint    `json:"id" validate:"required"`
+	Name      string  `json:"name" validate:"required"`
+	CountryId uint    `json:"country_id" validate:"required"`
+	SearchKey string  `json:"search_key"`
+	Token     *string `json:"token"`
 }
 
 func UserResponseParser(user *User) UserResponse {

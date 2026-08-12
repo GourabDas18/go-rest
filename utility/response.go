@@ -29,3 +29,27 @@ func Response(w http.ResponseWriter, status int, message string, data any, respo
 	resp["data"] = data
 	json.NewEncoder(w).Encode(resp)
 }
+
+func ErrorResponse(w http.ResponseWriter, status int, message string) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(status)
+	resp := make(map[string]any)
+	resp["status"] = "Error"
+	resp["success"] = false
+	resp["statusCode"] = status
+	resp["message"] = message
+	resp["data"] = nil
+	json.NewEncoder(w).Encode(resp)
+}
+
+func SuccessResponse(w http.ResponseWriter, status int, message string, data any) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(status)
+	resp := make(map[string]any)
+	resp["status"] = "Success"
+	resp["success"] = true
+	resp["statusCode"] = status
+	resp["message"] = message
+	resp["data"] = data
+	json.NewEncoder(w).Encode(resp)
+}

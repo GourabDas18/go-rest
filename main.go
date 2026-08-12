@@ -27,7 +27,9 @@ func main() {
 	router := http.NewServeMux()
 
 	router.HandleFunc("GET /", controller.Test)
-	router.HandleFunc("POST /", controller.CreateUser)
+
+	router.HandleFunc("POST /auth/create", controller.CreateUser)
+	router.HandleFunc("POST /auth/login", controller.LoginUser)
 
 	router.HandleFunc("POST /countries/bulk", controller.CreateBulkCountry)
 	router.HandleFunc("POST /country", controller.CountrySave)
