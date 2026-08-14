@@ -2,11 +2,13 @@ package controller
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 
 	"github.com/GourabDas18/g-rest/internal/model"
 	"github.com/GourabDas18/g-rest/internal/service"
 	"github.com/GourabDas18/g-rest/utility"
+	"gorm.io/gorm"
 )
 
 func CountrySave(w http.ResponseWriter, r *http.Request) {
@@ -64,8 +66,23 @@ func CreateBulkCountry(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetCountryList(w http.ResponseWriter, r *http.Request) {
-	var countryList []model.Country
 
+	id := r.URL.Query().Get("id")
+	if id != "" {
+		var country model.Country
+		respError := service.Db.First(&country, "is_active = ? AND id = ?", true, id).Error
+		if respError != nil {
+			if errors.Is(respError, gorm.ErrRecordNotFound) {
+				utility.Response(w, http.StatusNotFound, "No data found", nil, utility.Error)
+				return
+			}
+			utility.Response(w, http.StatusInternalServerError, respError.Error(), nil, utility.Error)
+			return
+		}
+		countryData := model.CountryParseFromRes(&country)
+		utility.Response(w, http.StatusFound, "Fetched Successfuly", &countryData, utility.Success)
+	}
+	var countryList []model.Country
 	respError := service.Db.Where("is_active = ?", true).Find(&countryList).Error
 	if respError != nil {
 		utility.Response(w, http.StatusInternalServerError, respError.Error(), nil, utility.Error)

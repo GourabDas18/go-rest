@@ -14,6 +14,7 @@ import (
 	"github.com/go-playground/validator/v10"
 
 	"github.com/GourabDas18/g-rest/internal/controller"
+	"github.com/GourabDas18/g-rest/internal/middleware"
 	"github.com/GourabDas18/g-rest/internal/service"
 )
 
@@ -37,7 +38,7 @@ func main() {
 
 	server := http.Server{
 		Addr:    config0.HTTPServer.Addr,
-		Handler: router,
+		Handler: middleware.Logger(router),
 	}
 
 	go func() {

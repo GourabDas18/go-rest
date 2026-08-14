@@ -1,0 +1,11 @@
+Timestamp,Method,Url,Payload,Query
+2026-08-14 07:86,GET,/countries?id=1,,"{""id"":[""1""]}"
+2026-08-14 08:86,GET,/countries?id=1,,id=1
+2026-08-14 08:86,GET,/countries?id,,id=
+2026-08-14 08:86,GET,/countries?id=9,,id=9
+2026-08-14 08:86,POST,/country,"{
+    ""id"": 2,
+    ""name"": ""United Kingdom"",
+    ""currency"": ""£"",
+    ""isActive"": true
+}",

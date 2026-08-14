@@ -95,6 +95,13 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 		utility.ErrorResponse(w, http.StatusBadRequest, err.Error())
 		return
 	}
+
+	password := service.Password{Value: dbUser.Password}
+	valid := password.ValidateHash([]byte(authCred.Password))
+	if !valid {
+		utility.ErrorResponse(w, http.StatusBadRequest, "Wrong password")
+		return
+	}
 	token, err := service.GetToken(int(dbUser.ID), dbUser.Name, int(dbUser.CountryId))
 	if err != nil {
 		utility.ErrorResponse(w, http.StatusBadRequest, err.Error())
