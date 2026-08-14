@@ -36,6 +36,9 @@ func main() {
 	router.HandleFunc("POST /country", controller.CountrySave)
 	router.HandleFunc("GET /countries", controller.GetCountryList)
 
+	router.Handle("GET /account", middleware.Authenticator(http.HandlerFunc(controller.GetAccounts)))
+	router.Handle("POST /account", middleware.Authenticator(http.HandlerFunc(controller.CreateAccount)))
+
 	server := http.Server{
 		Addr:    config0.HTTPServer.Addr,
 		Handler: middleware.Logger(router),

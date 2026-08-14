@@ -34,12 +34,13 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	user = model.UserParseFromRequest(&userReq)
 
 	var dbUser model.User
-	err = service.Db.First(&dbUser, "email = ?", user.Email).Error
+	var count int64
+	err = service.Db.Find(&dbUser, "email = ?", user.Email).Count(&count).Error
+	if count > 0 {
+		utility.Response(w, http.StatusExpectationFailed, "User already exist!", nil, utility.Error)
+		return
+	}
 	if err != nil {
-		if !errors.Is(err, gorm.ErrRecordNotFound) {
-			utility.Response(w, http.StatusExpectationFailed, "User already exist!", nil, utility.Error)
-			return
-		}
 		utility.Response(w, http.StatusExpectationFailed, err.Error(), nil, utility.Error)
 		return
 	}
@@ -77,6 +78,7 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 
 	if err := json.NewDecoder(r.Body).Decode(&authCred); err != nil {
 		utility.ErrorResponse(w, http.StatusBadRequest, err.Error())
+		return
 	}
 
 	pass, errMessage := utility.ValidatorG(authCred)

@@ -9,3 +9,106 @@ Timestamp,Method,Url,Payload,Query
     ""currency"": ""£"",
     ""isActive"": true
 }",
+2026-08-15 01:86,GET,/account,,
+2026-08-15 01:86,GET,/account,,
+2026-08-15 01:86,GET,/account?Authentication,,Authentication=
+2026-08-15 01:86,GET,/login?email=sumit@gmail.com&password=Sumit@2026,,"email=sumit@gmail.com,password=Sumit@2026"
+2026-08-15 01:86,GET,/auth/login?email=sumit@gmail.com&password=Sumit@2026,,"email=sumit@gmail.com,password=Sumit@2026"
+2026-08-15 01:86,POST,/auth/login?email=sumit@gmail.com&password=Sumit@2026,,"email=sumit@gmail.com,password=Sumit@2026"
+2026-08-15 01:86,POST,/auth/login?email=sumit@gmail.com&password=Sumit@2026,"{
+    ""email"":""Sumit@gmail.com"",
+    ""password"":""Sumit@2026""
+}","email=sumit@gmail.com,password=Sumit@2026"
+2026-08-15 01:86,POST,/auth/create,"{
+    ""email"":""Sumit@gmail.com"",
+    ""password"":""Sumit@2026""
+}",
+2026-08-15 01:86,POST,/auth/create,"{
+    ""name"":""Sumit"",
+    ""countryId"":1,
+    ""email"":""Sumit@gmail.com"",
+    ""password"":""Sumit@2026""
+}",
+2026-08-15 01:86,POST,/auth/create,"{
+    ""name"":""Sumit"",
+    ""countryId"":1,
+    ""email"":""Sumit@gmail.com"",
+    ""password"":""Sumit@2026""
+}",
+2026-08-15 01:86,GET,/account?Authentication=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJOYW1lIjoiU3VtaXQiLCJjb3VudHJ5SWQiOjEsImlzcyI6ImdvLXJlc3QtYnV6emV0IiwiZXhwIjoxNzg2ODI0MzA0LCJpYXQiOjE3ODY3Mzc5MDR9.LYcJLMo2BIvzK7DXTm8p3LD_6MewJ_nD8spzZvB_Beg,,Authentication=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJOYW1lIjoiU3VtaXQiLCJjb3VudHJ5SWQiOjEsImlzcyI6ImdvLXJlc3QtYnV6emV0IiwiZXhwIjoxNzg2ODI0MzA0LCJpYXQiOjE3ODY3Mzc5MDR9.LYcJLMo2BIvzK7DXTm8p3LD_6MewJ_nD8spzZvB_Beg
+2026-08-15 01:86,GET,/account?Authentication=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJOYW1lIjoiU3VtaXQiLCJjb3VudHJ5SWQiOjEsImlzcyI6ImdvLXJlc3QtYnV6emV0IiwiZXhwIjoxNzg2ODI0MzA0LCJpYXQiOjE3ODY3Mzc5MDR9.LYcJLMo2BIvzK7DXTm8p3LD_6MewJ_nD8spzZvB_Beg,,Authentication=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJOYW1lIjoiU3VtaXQiLCJjb3VudHJ5SWQiOjEsImlzcyI6ImdvLXJlc3QtYnV6emV0IiwiZXhwIjoxNzg2ODI0MzA0LCJpYXQiOjE3ODY3Mzc5MDR9.LYcJLMo2BIvzK7DXTm8p3LD_6MewJ_nD8spzZvB_Beg
+2026-08-15 01:86,GET,/account?Authentication=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJOYW1lIjoiU3VtaXQiLCJjb3VudHJ5SWQiOjEsImlzcyI6ImdvLXJlc3QtYnV6emV0IiwiZXhwIjoxNzg2ODI0MzA0LCJpYXQiOjE3ODY3Mzc5MDR9.LYcJLMo2BIvzK7DXTm8p3LD_6MewJ_nD8spzZvB_Beg,,Authentication=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJOYW1lIjoiU3VtaXQiLCJjb3VudHJ5SWQiOjEsImlzcyI6ImdvLXJlc3QtYnV6emV0IiwiZXhwIjoxNzg2ODI0MzA0LCJpYXQiOjE3ODY3Mzc5MDR9.LYcJLMo2BIvzK7DXTm8p3LD_6MewJ_nD8spzZvB_Beg
+2026-08-15 01:86,GET,/account?Authentication=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJOYW1lIjoiU3VtaXQiLCJjb3VudHJ5SWQiOjEsImlzcyI6ImdvLXJlc3QtYnV6emV0IiwiZXhwIjoxNzg2ODI0MzA0LCJpYXQiOjE3ODY3Mzc5MDR9.LYcJLMo2BIvzK7DXTm8p3LD_6MewJ_nD8spzZvB_Beg,,Authentication=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJOYW1lIjoiU3VtaXQiLCJjb3VudHJ5SWQiOjEsImlzcyI6ImdvLXJlc3QtYnV6emV0IiwiZXhwIjoxNzg2ODI0MzA0LCJpYXQiOjE3ODY3Mzc5MDR9.LYcJLMo2BIvzK7DXTm8p3LD_6MewJ_nD8spzZvB_Beg
+2026-08-15 01:86,GET,/account,,
+2026-08-15 01:86,GET,/account,,
+2026-08-15 01:86,GET,/account,,
+2026-08-15 01:86,GET,/account,,
+2026-08-15 01:86,GET,/account,,
+2026-08-15 01:86,GET,/account,,
+2026-08-15 01:86,GET,/account,,
+2026-08-15 01:86,GET,/account,,
+2026-08-15 01:86,GET,/account,,
+2026-08-15 01:86,GET,/account,,
+2026-08-15 02:86,GET,/account,,
+2026-08-15 02:86,GET,/account,,
+2026-08-15 02:86,GET,/account,,
+2026-08-15 02:86,GET,/account,,
+2026-08-15 02:86,GET,/account,,
+2026-08-15 02:86,GET,/account,,
+2026-08-15 02:86,GET,/account,,
+2026-08-15 02:86,GET,/account,,
+2026-08-15 02:86,GET,/account,,
+2026-08-15 02:86,GET,/account,,
+2026-08-15 02:86,POST,/account,"{
+    ""name"":""Debit Card"",
+    ""accountNumber"":""1234567"",
+    ""userId"":1
+}",
+2026-08-15 02:86,POST,/account,"{
+    ""name"":""Debit Card"",
+    ""accountNumber"":""1234567"",
+    ""userId"":1,
+    ""balance"":0
+}",
+2026-08-15 02:86,POST,/account,"{
+    ""name"":""Debit Card"",
+    ""accountNumber"":""1234567"",
+    ""userId"":1,
+    ""balance"":0
+}",
+2026-08-15 02:86,POST,/account,"{
+    ""name"":""Debit Card"",
+    ""accountNumber"":""1234567"",
+    ""userId"":1,
+    ""balance"":0
+}",
+2026-08-15 02:86,POST,/account,"{
+    ""name"":""Debit Card 2"",
+    ""accountNumber"":""1234567"",
+    ""userId"":1,
+    ""balance"":40
+}",
+2026-08-15 02:86,GET,/account,"{
+    ""name"":""Debit Card 2"",
+    ""accountNumber"":""1234567"",
+    ""userId"":1,
+    ""balance"":40
+}",
+2026-08-15 02:86,GET,/account?id=2,"{
+    ""name"":""Debit Card 2"",
+    ""accountNumber"":""1234567"",
+    ""userId"":1,
+    ""balance"":40
+}",id=2
+2026-08-15 02:86,GET,/account?id=2,"{
+    ""name"":""Debit Card 2"",
+    ""accountNumber"":""1234567"",
+    ""userId"":1,
+    ""balance"":40
+}",id=2
+2026-08-15 02:86,GET,/account?id=2,"{
+    ""name"":""Debit Card 2"",
+    ""accountNumber"":""1234567"",
+    ""userId"":1,
+    ""balance"":40
+}",id=2

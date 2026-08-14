@@ -16,7 +16,7 @@ type AccountReq struct {
 	Name          string `json:"name" validate:"required"`
 	AccountNumber string `json:"accountNumber"`
 	UserId        uint   `json:"userId" validate:"required"`
-	Balance       int64  `json:"balance" validate:"required"`
+	Balance       *int64 `json:"balance" validate:"required"`
 	IsActive      *bool  `json:"isActive"`
 }
 
@@ -43,7 +43,7 @@ func (acc AccountReq) ParseToAccount() Account {
 		Name:          acc.Name,
 		AccountNumber: acc.AccountNumber,
 		UserId:        acc.UserId,
-		Balance:       acc.Balance,
+		Balance:       *acc.Balance,
 		IsActive:      acc.IsActive,
 	}
 }
