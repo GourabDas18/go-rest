@@ -112,3 +112,63 @@ Timestamp,Method,Url,Payload,Query
     ""userId"":1,
     ""balance"":40
 }",id=2
+2026-08-15 11:86,GET,/category?id=2,"{
+    ""name"":""Debit Card 2"",
+    ""accountNumber"":""1234567"",
+    ""userId"":1,
+    ""balance"":40
+}",id=2
+2026-08-15 11:86,GET,/category?id=2,"{
+    ""name"":"""",
+    ""description"":""Food and grocery expense"",
+    ""userId"":1,
+    ""balance"":40
+}",id=2
+2026-08-15 11:86,POST,/category?id=2,"{
+    ""name"":"""",
+    ""description"":""Food and grocery expense"",
+    ""userId"":1,
+    ""balance"":40
+}",id=2
+2026-08-15 11:86,POST,/category?id=2,"{
+    ""name"":""Food"",
+    ""description"":""Food and grocery expense"",
+    ""userId"":1,
+    ""balance"":40
+}",id=2
+2026-08-15 12:86,POST,/category?id=2,"{
+    ""name"":""Food"",
+    ""description"":""Food and grocery expense"",
+    ""userId"":1,
+    ""balance"":40
+}",id=2
+2026-08-15 12:86,POST,/category?id=2,"{
+    ""name"":""Food"",
+    ""description"":""Food and grocery expense"",
+    ""userId"":1,
+    ""balance"":40
+}",id=2
+2026-08-15 12:86,POST,/category?id=2,"{
+    ""name"":""Rent"",
+    ""description"":""House rent expense"",
+    ""userId"":1,
+    ""balance"":40
+}",id=2
+2026-08-15 12:86,GET,/category,"{
+    ""name"":""Rent"",
+    ""description"":""House rent expense"",
+    ""userId"":1,
+    ""balance"":40
+}",
+2026-08-15 12:86,GET,/category?id=3,"{
+    ""name"":""Rent"",
+    ""description"":""House rent expense"",
+    ""userId"":1,
+    ""balance"":40
+}",id=3
+2026-08-15 12:86,GET,/category?id=2,"{
+    ""name"":""Rent"",
+    ""description"":""House rent expense"",
+    ""userId"":1,
+    ""balance"":40
+}",id=2

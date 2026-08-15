@@ -39,6 +39,9 @@ func main() {
 	router.Handle("GET /account", middleware.Authenticator(http.HandlerFunc(controller.GetAccounts)))
 	router.Handle("POST /account", middleware.Authenticator(http.HandlerFunc(controller.CreateAccount)))
 
+	router.Handle("GET /category", middleware.Authenticator(http.HandlerFunc(controller.CategoryController{}.GetCategory)))
+	router.Handle("POST /category", middleware.Authenticator(http.HandlerFunc(controller.CategoryController{}.CreateCategory)))
+
 	server := http.Server{
 		Addr:    config0.HTTPServer.Addr,
 		Handler: middleware.Logger(router),
