@@ -44,6 +44,7 @@ func ErrorResponse(w http.ResponseWriter, status int, message string) {
 
 func SuccessResponse(w http.ResponseWriter, status int, message string, data any) {
 	w.Header().Set("Content-Type", "application/json")
+	//w.Header().Set("Content-Type", "application/octet-stream")
 	w.WriteHeader(status)
 	resp := make(map[string]any)
 	resp["status"] = "Success"

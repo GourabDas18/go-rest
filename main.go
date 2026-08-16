@@ -27,6 +27,9 @@ func main() {
 
 	router := http.NewServeMux()
 
+	transactionCtrl := controller.TransactionController{}
+	categoryController := controller.CategoryController{}
+
 	router.HandleFunc("GET /", controller.Test)
 
 	router.HandleFunc("POST /auth/create", controller.CreateUser)
@@ -39,8 +42,11 @@ func main() {
 	router.Handle("GET /account", middleware.Authenticator(http.HandlerFunc(controller.GetAccounts)))
 	router.Handle("POST /account", middleware.Authenticator(http.HandlerFunc(controller.CreateAccount)))
 
-	router.Handle("GET /category", middleware.Authenticator(http.HandlerFunc(controller.CategoryController{}.GetCategory)))
-	router.Handle("POST /category", middleware.Authenticator(http.HandlerFunc(controller.CategoryController{}.CreateCategory)))
+	router.Handle("GET /category", middleware.Authenticator(http.HandlerFunc(categoryController.GetCategory)))
+	router.Handle("POST /category", middleware.Authenticator(http.HandlerFunc(categoryController.CreateCategory)))
+
+	router.Handle("POST /transaction", middleware.Authenticator(http.HandlerFunc(transactionCtrl.CreateTransaction)))
+	router.Handle("GET /transaction", middleware.Authenticator(http.HandlerFunc(transactionCtrl.GetTransactions)))
 
 	server := http.Server{
 		Addr:    config0.HTTPServer.Addr,
