@@ -29,20 +29,27 @@ type UserAuthReq struct {
 	Password string `json:"password" validate:"required,min=6"`
 }
 
-type UserResponse struct {
-	ID        uint    `json:"id" validate:"required"`
-	Name      string  `json:"name" validate:"required"`
-	CountryId uint    `json:"country_id" validate:"required"`
-	SearchKey string  `json:"search_key"`
-	Token     *string `json:"token"`
+type UserResult struct {
+	User
+	CurrencySymbol string `json:"currency_symbol" validate:"required"`
 }
 
-func UserResponseParser(user *User) UserResponse {
+type UserResponse struct {
+	ID             uint    `json:"id" validate:"required"`
+	Name           string  `json:"name" validate:"required"`
+	CountryId      uint    `json:"countryId"`
+	CurrencySymbol string  `json:"currency"`
+	Email          string  `json:"email"`
+	AuthToken      *string `json:"authToken"`
+}
+
+func UserResponseParser(user *UserResult) UserResponse {
 	userResp := UserResponse{
-		ID:        user.ID,
-		Name:      user.Name,
-		CountryId: user.CountryId,
-		SearchKey: user.SearchKey,
+		ID:             user.ID,
+		Name:           user.Name,
+		Email:          user.Email,
+		CountryId:      user.CountryId,
+		CurrencySymbol: user.CurrencySymbol,
 	}
 
 	return userResp

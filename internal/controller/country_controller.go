@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"strings"
 
 	"github.com/GourabDas18/g-rest/internal/model"
 	"github.com/GourabDas18/g-rest/internal/service"
@@ -68,6 +69,7 @@ func CreateBulkCountry(w http.ResponseWriter, r *http.Request) {
 func GetCountryList(w http.ResponseWriter, r *http.Request) {
 
 	id := r.URL.Query().Get("id")
+	name := r.URL.Query().Get("name")
 	if id != "" {
 		var country model.Country
 		respError := service.Db.First(&country, "is_active = ? AND id = ?", true, id).Error
@@ -80,7 +82,22 @@ func GetCountryList(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		countryData := model.CountryParseFromRes(&country)
-		utility.Response(w, http.StatusFound, "Fetched Successfuly", &countryData, utility.Success)
+		utility.Response(w, http.StatusOK, "Fetched Successfuly", &countryData, utility.Success)
+	}
+	if name != "" {
+		name = strings.TrimSpace(strings.ToLower("%" + name + "%"))
+		var country model.Country
+		respError := service.Db.First(&country, "is_active = ? AND LOWER(name) LIKE ?", true, name).Error
+		if respError != nil {
+			if errors.Is(respError, gorm.ErrRecordNotFound) {
+				utility.Response(w, http.StatusNotFound, "No data found", nil, utility.Error)
+				return
+			}
+			utility.Response(w, http.StatusInternalServerError, respError.Error(), nil, utility.Error)
+			return
+		}
+		countryData := model.CountryParseFromRes(&country)
+		utility.Response(w, http.StatusOK, "Fetched Successfuly", &countryData, utility.Success)
 	}
 	var countryList []model.Country
 	respError := service.Db.Where("is_active = ?", true).Find(&countryList).Error
@@ -89,5 +106,5 @@ func GetCountryList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	countryData := model.BulkCountryParseFromRes(countryList)
-	utility.Response(w, http.StatusFound, "Fetched Successfuly", &countryData, utility.Success)
+	utility.Response(w, http.StatusOK, "Fetched Successfuly", &countryData, utility.Success)
 }

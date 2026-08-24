@@ -59,15 +59,31 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	userResp := model.UserResponseParser(&user)
+	var userData model.UserResult
 
+	err = service.Db.Table("users u").
+		Joins("LEFT JOIN countries c ON c.id = u.country_id").
+		Select("u.* ,c.currency AS currency_symbol,c.id AS country_id").
+		Where("email = ?", user.Email).
+		First(&userData).Error
+
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			utility.ErrorResponse(w, http.StatusBadRequest, "No user found!")
+			return
+		}
+		utility.ErrorResponse(w, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	userResp := model.UserResponseParser(&userData)
 	authToken, err := service.GetToken(int(userResp.ID), userResp.Name, int(userResp.CountryId))
 	if err != nil {
 		utility.Response(w, http.StatusUnauthorized, err.Error(), nil, utility.Error)
 		return
 	}
 
-	userResp.Token = &authToken
+	userResp.AuthToken = &authToken
 
 	utility.Response(w, http.StatusCreated, "Created Successfuly", &userResp, utility.Success)
 
@@ -86,9 +102,13 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 		utility.ErrorResponse(w, http.StatusBadRequest, errMessage)
 		return
 	}
-	var dbUser model.User
+	var dbUser model.UserResult
 
-	err := service.Db.First(&dbUser, "email = ?", authCred.Email).Error
+	err := service.Db.Table("users u").
+		Joins("LEFT JOIN countries c ON c.id = u.country_id").
+		Select("u.* ,c.currency AS currency_symbol,c.id AS country_id").
+		Where("email = ?", authCred.Email).
+		First(&dbUser).Error
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			utility.ErrorResponse(w, http.StatusBadRequest, "No user found!")
@@ -104,13 +124,14 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 		utility.ErrorResponse(w, http.StatusBadRequest, "Wrong password")
 		return
 	}
+
 	token, err := service.GetToken(int(dbUser.ID), dbUser.Name, int(dbUser.CountryId))
 	if err != nil {
 		utility.ErrorResponse(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	userResp := model.UserResponseParser(&dbUser)
-	userResp.Token = &token
+	userResp.AuthToken = &token
 	utility.SuccessResponse(w, http.StatusOK, "Successful", &userResp)
 
 }

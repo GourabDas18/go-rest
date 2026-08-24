@@ -476,3 +476,159 @@ Timestamp,Method,Url,Payload,Query
     ""type"":1,
     ""accountId"":2
 }",id=2
+2026-08-21 23:86,POST,/auth/create,"{""name"":""Gourab Das"",""email"":""grb@gmail.com"",""password"":""Gourab@2026""}",
+2026-08-21 23:86,POST,/auth/create,"{
+""name"":""Gourab Das"",
+""email"":""grb@gmail.com"",
+""password"":""Gourab@2026""
+}",
+2026-08-21 23:86,POST,/auth/create,"{
+""name"":""Gourab Das"",
+""email"":""grb@gmail.com"",
+""password"":""Gourab@2026"",
+""countryId"":1
+}",
+2026-08-21 23:86,POST,/auth/create,"{
+""name"":""Gourab Das"",
+""email"":""grb@gmail.com"",
+""password"":""Gourab@2026"",
+""countryId"":1
+}",
+2026-08-22 00:86,GET,/countries,,
+2026-08-22 00:86,GET,/country,,
+2026-08-22 00:86,GET,/countries,,
+2026-08-22 00:86,GET,/countries?id=1,,id=1
+2026-08-22 00:86,GET,/countries?id=2,,id=2
+2026-08-23 00:86,GET,/,,
+2026-08-23 00:86,GET,/favicon.ico,,
+2026-08-23 00:86,GET,/,,
+2026-08-23 00:86,GET,/favicon.ico,,
+2026-08-23 00:86,GET,/,,
+2026-08-23 00:86,GET,/favicon.ico,,
+2026-08-25 02:86,GET,/auth/login,"{
+    ""email"":""grb@gmail.com"",
+    ""password"":""Grb@2026""
+}",
+2026-08-25 02:86,POST,/auth/login,"{
+    ""email"":""grb@gmail.com"",
+    ""password"":""Grb@2026""
+}",
+2026-08-25 02:86,POST,/auth/login,"{
+    ""email"":""grb@gmail.com"",
+    ""password"":""Grb@2026""
+}",
+2026-08-25 02:86,POST,/auth/login,"{
+    ""email"":""grb@gmail.com"",
+    ""password"":""Grb@2026""
+}",
+2026-08-25 02:86,POST,/auth/login,"{
+    ""email"":""grb@gmail.com"",
+    ""password"":""Grb@2026""
+}",
+2026-08-25 02:86,POST,/countries/bulk,"[
+  {
+    ""name"": ""India"",
+    ""currency"": ""₹""
+  },
+  {
+    ""name"": ""United States"",
+    ""currency"": ""$""
+  },
+  {
+    ""name"": ""United Kingdom"",
+    ""currency"": ""£""
+  },
+  {
+    ""name"": ""European Union"",
+    ""currency"": ""€""
+  },
+  {
+    ""name"": ""Japan"",
+    ""currency"": ""¥""
+  },
+  {
+    ""name"": ""China"",
+    ""currency"": ""¥""
+  },
+  {
+    ""name"": ""South Korea"",
+    ""currency"": ""₩""
+  },
+  {
+    ""name"": ""Russia"",
+    ""currency"": ""₽""
+  },
+  {
+    ""name"": ""Bangladesh"",
+    ""currency"": ""৳""
+  },
+  {
+    ""name"": ""Thailand"",
+    ""currency"": ""฿""
+  },
+  {
+    ""name"": ""Vietnam"",
+    ""currency"": ""₫""
+  },
+  {
+    ""name"": ""Philippines"",
+    ""currency"": ""₱""
+  },
+  {
+    ""name"": ""Turkey"",
+    ""currency"": ""₺""
+  },
+  {
+    ""name"": ""Switzerland"",
+    ""currency"": ""CHF""
+  },
+  {
+    ""name"": ""Australia"",
+    ""currency"": ""$""
+  },
+  {
+    ""name"": ""Canada"",
+    ""currency"": ""$""
+  },
+  {
+    ""name"": ""Singapore"",
+    ""currency"": ""$""
+  },
+  {
+    ""name"": ""Malaysia"",
+    ""currency"": ""RM""
+  },
+  {
+    ""name"": ""Indonesia"",
+    ""currency"": ""Rp""
+  },
+  {
+    ""name"": ""South Africa"",
+    ""currency"": ""R""
+  }
+]",
+2026-08-25 02:86,POST,/auth/login,"{
+    ""email"":""grb@gmail.com"",
+    ""password"":""Grb@2026""
+}",
+2026-08-25 02:86,POST,/auth/login,"{
+    ""email"":""grb@gmail.com"",
+    ""password"":""Grb@2026""
+}",
+2026-08-25 02:86,GET,/countries,,
+2026-08-25 03:86,GET,/countries?id=1,,id=1
+2026-08-25 03:86,GET,/countries?name=ind,,name=ind
+2026-08-25 03:86,GET,/countries?name=ind,,name=ind
+2026-08-25 03:86,GET,/countries?name=Ind,,name=Ind
+2026-08-25 03:86,GET,/countries?name=Ind,,name=Ind
+2026-08-25 03:86,GET,/countries?name=ind,,name=ind
+2026-08-25 03:86,GET,/countries?name=aus,,name=aus
+2026-08-25 03:86,GET,/countries,,
+2026-08-25 03:86,GET,/favicon.ico,,
+2026-08-25 03:86,GET,/countries,,
+2026-08-25 03:86,POST,/auth/login?email=grb%40gmail.com&password=Grb%402026,,"email=grb@gmail.com,password=Grb@2026"
+2026-08-25 03:86,POST,/auth/login,"{""email"":""grb@gmail.com"",""password"":""Grb@2026""}",
+2026-08-25 03:86,POST,/auth/login,"{""email"":""grb@gmail.com"",""password"":""Grb@2026""}",
+2026-08-25 03:86,GET,/countries,,
+2026-08-25 03:86,GET,/countries,,
+2026-08-25 03:86,POST,/auth/login,"{""email"":""grb@gmail.com"",""password"":""Grb@2026""}",
